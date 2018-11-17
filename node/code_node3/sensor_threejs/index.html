@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!-- <html>
+
+<head>
+    <title>Test</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+
+    <script src="libraries/p5.js" type="text/javascript"></script>
+    <script src="libraries/p5.dom.js" type="text/javascript"></script>
+    <script src="libraries/p5.sound.js" type="text/javascript"></script>
+
+    <script src="sketch.js" type="text/javascript"></script>
+</head>
+
+<body>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.1/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        var x, y, r, j, k, l;
+        var socket = io.connect(window.location.origin);
+
+        var socket = io.connect('//localhost:3000');
+        socket.on('mysocket', function(data) {
+            console.log(data);
+            incoming = data.split(',');
+            x = incoming[4];
+            y = incoming[5];
+            j = incoming[0];
+            k = incoming[1];
+            l = incoming[2];
+            r = incoming[3];
+        });
+        socket.on('error', function() {
+            console.error(arguments)
+        });
+    </script>
+    <title>Getting Started with Three.js</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/88/three.min.js"></script>
+    <script>
+        window.onload = function() {
+
+            var camera, scene, renderer;
+            var geometry, material, mesh;
+
+            init();
+            animate();
+
+            function init() {
+
+                camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10);
+                camera.position.z = 1;
+
+                scene = new THREE.Scene();
+
+                geometry = new THREE.BoxGeometry(0.2, 0.2, 0.2);
+                material = new THREE.MeshNormalMaterial();
+
+                mesh = new THREE.Mesh(geometry, material);
+                scene.add(mesh);
+
+                renderer = new THREE.WebGLRenderer({
+                    antialias: true
+                });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                document.body.appendChild(renderer.domElement);
+
+            }
+
+            function animate() {
+
+                requestAnimationFrame(animate);
+
+                mesh.rotation.x += 0.1;
+                mesh.rotation.y += 0.1;
+
+                renderer.render(scene, camera);
+
+            }
+
+        };
+    </script>
+</head>
+
+<body></body>
+
+</html>
